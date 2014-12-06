@@ -1,0 +1,16 @@
+{
+  "my-service": {
+    "name": "my-service",
+    "description": "Test service",
+    "dockerRepository": "lukebond/my-service"
+  },
+  "deploy-my-service": {
+    "serviceName": "my-service",
+    "dockerRepository": "lukebond/my-service",
+    "pushedAt": 1
+  },
+  "deploy-no-service-name": {
+    "dockerRepository": "lukebond/my-service",
+    "pushedAt": 1
+  }
+}

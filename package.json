@@ -1,0 +1,44 @@
+{
+  "name": "paz-scheduler",
+  "version": "0.0.1",
+  "description": "Takes apps from your paz service directory and runs them on a CoreOS cluster using fleet",
+  "main": "server.js",
+  "scripts": {
+    "test": "fig up -d && lab && fig stop",
+    "codestyle": "jscs -p google bin/ lib/ middleware/ resources/ server.js",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "paas",
+    "paz",
+    "etcd",
+    "fleet"
+  ],
+  "dependencies": {
+    "async": "0.7.0",
+    "bunyan": "^0.22.3",
+    "error-plus": "0.0.1",
+    "execSync": "^1.0.1-pre",
+    "fleetctl-ssh": "0.1.4",
+    "ini": "^1.1.0",
+    "joi": "^4.0.0",
+    "json-override": "^0.1.2",
+    "leveldown": "^0.10.2",
+    "levelup": "^0.18.2",
+    "minimist": "^0.2.0",
+    "node-etcd": "^2.1.1",
+    "restify": "^2.7.0"
+  },
+  "devDependencies": {
+    "debug": "^1.0.4",
+    "expectations": "^0.2.5",
+    "lab": "^4.4.4",
+    "precommit-hook": "^1.0.7",
+    "supertest": "^0.12.0"
+  },
+  "precommit": [
+    "lint",
+    "codestyle"
+  ],
+  "author": "Luke Bond <luke@yld.io>"
+}

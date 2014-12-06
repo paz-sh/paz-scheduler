@@ -1,0 +1,27 @@
+scheduler:
+  build: .
+  environment:
+   - PAZ_SCHEDULER_LOGLEVEL=debug
+   - PAZ_SCHEDULER_SVCDIR_URL=svcdir_1:9001
+   - PAZ_SCHEDULER_PORT=9002
+   - PAZ_SCHEDULER_GEN_KEY=false
+   - PAZ_SCHEDULER_NODEPLOY=true
+   - PAZ_SCHEDULER_ETCD_ENDPOINT=etcd_1:4001
+   - DEBUG
+  links:
+   - svcdir
+   - etcd
+  ports:
+   - "9002:9002"
+svcdir:
+  image: lukebond/paz-service-directory
+  environment:
+   - PAZ_SERVICE_DIRECTORY_PORT=9001
+   - DEBUG
+  ports:
+   - "9001:9001"
+etcd:
+  image: coreos/etcd
+  ports:
+   - "4001:4001"
+   - "7001:7001"
