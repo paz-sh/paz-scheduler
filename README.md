@@ -3,6 +3,8 @@
 
 Takes apps from your paz service directory and runs them on a CoreOS cluster using Fleet.
 
+`TODO` document REST API.
+
 ## Tests
 
 API functional tests can be found in `test/`.
