@@ -1,7 +1,7 @@
 # paz-scheduler
 =============
 
-Takes apps from your paz service directory and runs them on a CoreOS cluster using fleet.
+Takes apps from your paz service directory and runs them on a CoreOS cluster using Fleet.
 
 ## Tests
 
