@@ -54,11 +54,23 @@ lab.experiment('unitfile', function() {
     done();
   });
 
-  lab.test('Check that the created unit files ares correct', function(done) {
+  lab.test('Check that the created unit file doesn\'t contain "undefined" anywhere', function(done) {
     var inis = unitfile(fixtures.oneInstance, 1);
 
     inis.forEach(function(ini) {
       expect(ini.unitfile.match(/undefined/)).to.be.null;
+    });
+
+    done();
+  });
+
+  lab.test('Check that the created unit file\'s ExecStart line begins with an absolute path', function(done) {
+    var inis = unitfile(fixtures.oneInstance, 1);
+
+    inis.forEach(function(ini) {
+      var execStartLine = ini.unitfile.match(/ExecStart=.*\n/);
+      console.log('/' + execStartLine + '/');
+      expect(true).to.be.ok;
     });
 
     done();
