@@ -68,9 +68,8 @@ lab.experiment('unitfile', function() {
     var inis = unitfile(fixtures.oneInstance, 1);
 
     inis.forEach(function(ini) {
-      var execStartLine = ini.unitfile.match(/ExecStart=.*\n/);
-      console.log('/' + execStartLine + '/');
-      expect(true).to.be.ok;
+      var execStartLine = ini.unitfile.match(/ExecStart=([^\n]+)\n/);
+      expect(execStartLine.split(' ')[0].substring(0, 1)).to.be.equal('/');
     });
 
     done();
