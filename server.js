@@ -75,7 +75,7 @@ function Server(_opts) {
     return new Server(opts);
   }
 
-  var dbPath = './' + opts.dbname;
+  var dbPath = opts.dbname;
   opts.leveldb = {
     path: dbPath,
     db: levelup(dbPath, {
