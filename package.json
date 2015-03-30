@@ -20,7 +20,7 @@
     "error-plus": "0.0.1",
     "execSync": "^1.0.1-pre",
     "fleetctl-ssh": "0.1.4",
-    "ini": "^1.1.0",
+    "ini": "1.3.2",
     "joi": "^4.0.0",
     "json-override": "^0.1.2",
     "leveldown": "^0.10.2",
