@@ -53,10 +53,10 @@ module.exports = function Service(cfg) {
         var serviceName = serviceObject.name;
 
         deploy(serviceName, serviceObject, hookObject, sshHost, options, db,
-          function (err, versionNumber) {
-            if (err) {
-              req.log.error(err);
-              return cb(err);
+          function (deployerr, versionNumber) {
+            if (deployerr) {
+              req.log.error(deployerr);
+              return cb(deployerr);
             }
             req.log.info({
               message: 'Successfully deployed ' + serviceName + ' v' + versionNumber

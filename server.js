@@ -47,7 +47,7 @@ var opts = {
     +(argv.port || process.env[APP_NAME + '_PORT'] || '9002'),
   'loglevel':
     argv.loglevel || process.env[APP_NAME + '_LOGLEVEL'] || 'info',
-  'dbname': argv.dbname || process.env[APP_NAME + '_DBNAME']  || 'db',
+  'dbname': argv.dbname || process.env[APP_NAME + '_DBNAME'] || 'db',
   'svcdir':
     argv.svcdir || process.env[APP_NAME + '_SVCDIR_URL'] ||
     'localhost:9001',
@@ -156,12 +156,12 @@ Server.prototype.close = function(cb) {
     if (err) {
       console.log(err);
     }
-    this.db.close(function(err) {
-      if (err) {
-        console.log(err);
+    this.db.close(function(err2) {
+      if (err2) {
+        console.log(err2);
       }
       return cb();
-    }.bind(this));
+    });
   }.bind(this));
 };
 
