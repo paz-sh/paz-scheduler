@@ -4,7 +4,7 @@
   "description": "Takes apps from your paz service directory and runs them on a CoreOS cluster using fleet",
   "main": "server.js",
   "scripts": {
-    "test": "fig up -d && lab && fig stop",
+    "test": "fig up -d && lab; fig stop",
     "codestyle": "jscs -p google bin/ lib/ middleware/ resources/ server.js",
     "lint": "eslint ."
   },
