@@ -19,26 +19,26 @@ module.exports = function Service(cfg) {
 
     var dbKey = 'latest!' + name;
 
-    db.get(dbKey, function(err, doc) {
-      if (err && err.notFound) {
-        return cb(new _Error(err, {statusCode: 404, message: err.message}));
-      } else if (err) {
-        return cb(new _Error(err, {statusCode: 500, message: err.message}));
+    db.get(dbKey, function(latestErr, latestDoc) {
+      if (latestErr && latestErr.notFound) {
+        return cb(new _Error(latestErr, {statusCode: 404, message: latestErr.message}));
+      } else if (latestErr) {
+        return cb(new _Error(latestErr, {statusCode: 500, message: latestErr.message}));
       }
 
-      if (doc) {
-        dbKey = 'deploy!' + name + '!' + doc;
+      if (latestDoc) {
+        dbKey = 'deploy!' + name + '!' + latestDoc;
 
-        db.get(dbKey, function(err2, doc2) {
-          if (err2 && err.notFound) {
-            return cb(new _Error(err2, {statusCode: 404, message: err2.message}));
-          } else if (err2) {
-            return cb(new _Error(err2, {statusCode: 500, message: err2.message}));
+        db.get(dbKey, function(err, doc) {
+          if (err && err.notFound) {
+            return cb(new _Error(err, {statusCode: 404, message: err.message}));
+          } else if (err) {
+            return cb(new _Error(err, {statusCode: 500, message: err.message}));
           }
 
-          if (doc2) {
+          if (doc) {
             return cb(null, {
-              doc2: doc2.service.config
+              doc: doc.service.config
             });
           }
         });
