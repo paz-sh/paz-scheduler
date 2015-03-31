@@ -1,4 +1,4 @@
-FROM node
+FROM node:0.10
 
 ADD ./package.json /usr/src/app/package.json
 WORKDIR /usr/src/app
