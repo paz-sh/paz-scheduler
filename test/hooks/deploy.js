@@ -13,7 +13,7 @@ var schedulerPort = process.env.SCHEDULER_PORT || 9002;
 var svcDirPort = process.env.SVCDIR_PORT || 9001;
 
 var schedulerPath = ['http://', host, ':', schedulerPort].join('');
-var svcDirPath    = ['http://', host, ':', svcDirPort].join('');
+var svcDirPath = ['http://', host, ':', svcDirPort].join('');
 
 lab.experiment('hooks/deploy', function() {
   var scheduler = supertest(schedulerPath);

@@ -34,7 +34,9 @@
     "expectations": "^0.2.5",
     "lab": "^4.4.4",
     "precommit-hook": "^1.0.7",
-    "supertest": "^0.12.0"
+    "supertest": "^0.12.0",
+    "eslint": "0.18.0",
+    "jscs": "1.12.0"
   },
   "precommit": [
     "lint",

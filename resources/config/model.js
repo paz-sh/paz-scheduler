@@ -29,16 +29,16 @@ module.exports = function Service(cfg) {
       if (doc) {
         dbKey = 'deploy!' + name + '!' + doc;
 
-        db.get(dbKey, function(err, doc) {
-          if (err && err.notFound) {
-            return cb(new _Error(err, {statusCode: 404, message: err.message}));
-          } else if (err) {
-            return cb(new _Error(err, {statusCode: 500, message: err.message}));
+        db.get(dbKey, function(err2, doc2) {
+          if (err2 && err.notFound) {
+            return cb(new _Error(err2, {statusCode: 404, message: err2.message}));
+          } else if (err2) {
+            return cb(new _Error(err2, {statusCode: 500, message: err2.message}));
           }
 
-          if (doc) {
+          if (doc2) {
             return cb(null, {
-              doc: doc.service.config
+              doc2: doc2.service.config
             });
           }
         });

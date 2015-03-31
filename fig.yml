@@ -14,7 +14,7 @@ scheduler:
   ports:
    - "9002:9002"
 svcdir:
-  image: lukebond/paz-service-directory
+  image: quay.io/yldio/paz-service-directory
   environment:
    - PAZ_SERVICE_DIRECTORY_PORT=9001
    - DEBUG

@@ -69,7 +69,7 @@ lab.experiment('unitfile', function() {
 
     inis.forEach(function(ini) {
       var execStartLine = ini.unitfile.match(/ExecStart=([^\n]+)\n/);
-      expect(execStartLine.split(' ')[0].substring(0, 1)).to.be.equal('/');
+      expect(execStartLine[1][0]).to.be.equal('/');
     });
 
     done();

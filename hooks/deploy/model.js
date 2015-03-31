@@ -48,8 +48,8 @@ module.exports = function Service(cfg) {
       function (err, svcReq, svcRes, serviceObject) {
         if (err && err.message.match(/Key\ not\ found/g)) {
           return cb(new _Error(
-            'Service ' + serviceName + ' is not in the service directory.', { 
-            statusCode: 404 
+            'Service ' + serviceName + ' is not in the service directory.', {
+            statusCode: 404
           }));
         } else if (err) {
           return cb(err);
@@ -57,13 +57,13 @@ module.exports = function Service(cfg) {
         req.log.debug(serviceObject, 'Service object from service directory');
 
         deploy(serviceName, serviceObject.doc, hookObject, sshHost, options, db,
-          function (err, versionNumber) {
-            if (err) {
-              req.log.error(err);
-              return cb(err);
+          function (deployerr, versionNumber) {
+            if (deployerr) {
+              req.log.error(deployerr);
+              return cb(deployerr);
             }
             req.log.info({
-              message: 
+              message:
                 'Successfully deployed ' + serviceName + ' v' + versionNumber
             });
             return cb(null, { statusCode: 200 });
