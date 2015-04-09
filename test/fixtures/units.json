@@ -5,12 +5,13 @@
       "config": {
         "publicFacing": false,
         "ports": [],
-        "env": {}
+        "env": {},
+        "user": "core"
       }
   },
   "noConfig": {
-      "name": "demo-api",
-      "dockerRepository": "lukebond/demo-api"
+    "name": "demo-api",
+    "dockerRepository": "lukebond/demo-api"
   },
   "oneInstance": {
     "name": "demo-api",
@@ -19,7 +20,8 @@
       "publicFacing": false,
       "numInstances": 1,
       "ports": [],
-      "env": {}
+      "env": {},
+      "user": "core"
     }
   },
   "twoInstances": {
@@ -29,7 +31,8 @@
       "publicFacing": false,
       "numInstances": 2,
       "ports": [],
-      "env": {}
+      "env": {},
+      "user": "core"
     }
   },
   "threeInstances": {
@@ -39,7 +42,8 @@
       "publicFacing": false,
       "numInstances": 3,
       "ports": [],
-      "env": {}
+      "env": {},
+      "user": "core"
     }
   }
 }

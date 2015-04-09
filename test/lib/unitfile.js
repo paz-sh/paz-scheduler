@@ -74,4 +74,12 @@ lab.experiment('unitfile', function() {
 
     done();
   });
+
+  lab.test('Check that the created unit file includes `User=core`', function(done) {
+    var inis = unitfile(fixtures.oneInstance, 1);
+
+    expect(inis[0].unitfile.match(/User=core/)).to.be.ok;
+
+    done();
+  });
 });
