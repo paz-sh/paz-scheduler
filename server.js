@@ -1,5 +1,6 @@
 'use strict';
 
+var argh = require('argh');
 var parseArgs = require('minimist');
 var bunyan = require('bunyan');
 var jsonOverride = require('json-override');
@@ -29,6 +30,7 @@ if (argv.help || argv.h) {
     '--gen-key If true, generate a keypair and post the public key to etcd; the private key will be used as if passed to --ssh-key (default: false)',
     '--etcd-pubkey-key The name of the key against which to store the generated public key (default: /paz/config/scheduler/_pubkey)',
     '--etcd-endpoint URL of the etcd endpoint (default: 172.17.8.101:4001)',
+    '--cors set whether to enable CORS or not (default: true)',
     '--nodeploy disable deployments, for testing (default: false)'
   ].join('\n'));
   process.exit();
@@ -63,9 +65,20 @@ var opts = {
     argv['etcd-pubkey-key'] || process.env[APP_NAME + '_ETCD_PUBKEY_KEY'] || '/paz/config/scheduler/_pubkey',
   'etcd-endpoint':
     argv['etcd-endpoint'] || process.env[APP_NAME + '_ETCD_ENDPOINT'] || '127.0.0.1:4001',
+  'cors': argh.argv.cors ||
+    process.env[APP_NAME + '_CORS'] ||
+    true,
   'nodeploy':
     argv.nodeploy || asBoolean(process.env[APP_NAME + '_NODEPLOY']) || false
 };
+
+if (opts.cors === 'true') {
+  opts.cors = true;
+}
+if (opts.cors === 'false') {
+  opts.cors = false;
+}
+console.log(JSON.stringify(opts));
 
 function Server(_opts) {
   if (_opts) {
@@ -108,6 +121,14 @@ function Server(_opts) {
   opts.client = this.restifyClient;
 
   this.restifyServer.log.level(opts.loglevel);
+
+  /* eslint-disable new-cap */
+
+  if (opts.cors) {
+    this.restifyServer.pre(restify.CORS());
+  }
+
+  /* eslint-enable new-cap */
 
   this.restifyServer.use(require('./middleware/uuid'));
   this.restifyServer.use(require('./middleware/api-version'));
