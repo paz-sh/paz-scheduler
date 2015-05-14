@@ -41,7 +41,7 @@ For Dockerhub webhook
 
 ## Latest Config [/config/{name}/version/latest]
 
-Retrieve the lastest config of the service that the scheduler has deployed.
+Retrieve the latest config of the service that the scheduler has deployed.
 
 ### Retrieve the latest config for a service [GET]
 
