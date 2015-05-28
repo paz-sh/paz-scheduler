@@ -1,4 +1,4 @@
-FROM node:0.10
+FROM quay.io/yldio/paz-base
 
 ADD ./package.json /usr/src/app/package.json
 WORKDIR /usr/src/app
