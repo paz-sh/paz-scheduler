@@ -6,7 +6,9 @@
   "scripts": {
     "test": "docker-compose build && docker-compose up -d && sleep 3 && lab && docker-compose stop",
     "codestyle": "jscs -p google bin/ lib/ middleware/ resources/ server.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "docs": "mkdir -p docs/generated && aglio -i apiary.apib -o docs/generated/index.html",
+    "docs-server": "st -p 9002 -d docs/generated -i index.html"
   },
   "keywords": [
     "paas",
@@ -31,6 +33,7 @@
     "restify": "^2.7.0"
   },
   "devDependencies": {
+    "aglio": "^1.14.0",
     "debug": "^1.0.4",
     "expectations": "^0.2.5",
     "lab": "^4.4.4",
