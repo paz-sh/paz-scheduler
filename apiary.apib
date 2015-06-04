@@ -2,11 +2,13 @@ FORMAT: 1A
 HOST: http://paz-scheduler.paz
 
 # paz-scheduler
+
 The scheduler deploy a service to the cluster.
 
 There are two endpoints avaliable, one is for DockerHub webhook, another is for manual deployment.
 
 # Group Hook
+
 Deployment trigger endpoint
 
 ## Deploy hook [/hooks/deploy]
@@ -134,4 +136,40 @@ Retrieve config history of the service that the scheduler has deployed.
                         "user": "core"
                     }
                 }
+            }
+
+# Group Journal
+
+Journal list for deployment history.
+
+## Get journal [/journal]
+
+Retrieve journal list.
+
+### Retrieve journal list [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "doc": [
+                {
+                    "event": "deploy",
+                    "serviceName": "demo-api",
+                    "version": "1",
+                    "timestamp": 1433346812760,
+                    "config": {
+                        "publicFacing": false,
+                        "numInstances": 1,
+                        "ports": [{
+                            "container":9000,
+                            "host":3000
+                        }],
+                        "env": {
+                            "paz": "awesome"
+                        },
+                        "user": "core"
+                    }
+                }]
             }

@@ -132,6 +132,33 @@ lab.experiment('config', function() {
       });
   });
 
+  lab.test('GET /journal should return 200 with a journal list', function(done) {
+    scheduler
+      .get('/journal')
+      .set('Accept', 'application/json')
+      .expect(200)
+      .end(function(err, res) {
+        if (err) {
+          return done(err);
+        }
+
+        var doc = res.body.doc[0];
+
+        expect(doc).to.have.property('event');
+        expect(doc.event).to.equal('deploy');
+
+        expect(doc).to.have.property('serviceName');
+        expect(doc).to.have.property('timestamp');
+        expect(doc).to.have.property('version');
+        expect(doc.config).to.have.property('publicFacing');
+        expect(doc.config).to.have.property('ports');
+        expect(doc.config).to.have.property('env');
+        expect(doc.config).to.have.property('numInstances');
+
+        done();
+      });
+  });
+
   lab.after(function(done) {
     svcDir
       .delete('/services/my-service')
