@@ -110,6 +110,28 @@ lab.experiment('config', function() {
       });
   });
 
+  lab.test('GET /config/:name/history should return 200 with a list of config docs', function(done) {
+    scheduler
+      .get('/config/my-service/history')
+      .set('Accept', 'application/json')
+      .expect(200)
+      .end(function(err, res) {
+        if (err) {
+          return done(err);
+        }
+
+        var config = res.body.doc;
+
+        expect(config).to.have.property('1');  // version 1
+        expect(config['1']).to.have.property('publicFacing');
+        expect(config['1']).to.have.property('ports');
+        expect(config['1']).to.have.property('env');
+        expect(config['1']).to.have.property('numInstances');
+
+        done();
+      });
+  });
+
   lab.after(function(done) {
     svcDir
       .delete('/services/my-service')

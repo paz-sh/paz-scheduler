@@ -79,17 +79,17 @@ module.exports = function Service(cfg) {
 
   };
 
-  model.getHistory = function(meta, name, cb) {
-    if (!name) {
+  model.getHistory = function(meta, params, cb) {
+    if (!params.name) {
       return cb(new _Error('Bad request. Expected service name.', {
         statusCode: 400
       }));
     }
 
     var doc = {};
-
+    var re = new RegExp('deploy!' + params.name + '!', 'g');
     db.createReadStream().on('data', function(data) {
-      if (data.key.match(/deploy\!/g)) {
+      if (data.key.match(re)) {
         var version = data.key.split('!')[2];
 
         doc[version] = data.value.service.config;
