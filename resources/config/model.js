@@ -105,5 +105,45 @@ module.exports = function Service(cfg) {
     });
   };
 
+  // Gets journal
+  model.getJournal = function(meta, params, cb) {
+
+    var serializeJournal = function(journal) {
+      var deployColumn = journal.value.key.split('!');
+      var content = {};
+      content.event = journal.value.event;
+      content.serviceName = deployColumn[1];
+      content.version = deployColumn[2];
+      content.timestamp = journal.value.timestamp;
+      return content;
+    };
+
+    var doc = [];
+
+    db.createReadStream().on('data', function(journal) {
+      if (journal.key.match(/journal\!/g)) {
+        // Query service config
+        db.get(journal.value.key, function(err, data) {
+          var content = serializeJournal(journal);
+          if (err || !data) {
+            content.config = {};
+            doc.push(content);
+          } else {
+            content.config = data.service.config;
+            doc.push(content);
+          }
+        });
+      }
+    }).on('error', function(err) {
+      return cb(new _Error('Database read error:' + err.message, {
+        statusCode: 500
+      }));
+    }).on('end', function() {
+      return cb(null, {
+        doc: doc
+      });
+    });
+  };
+
   return model;
 };

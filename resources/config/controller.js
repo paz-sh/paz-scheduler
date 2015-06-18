@@ -57,5 +57,20 @@ module.exports = function(cfg) {
     });
   };
 
+  controller.getJournal = function(req, res) {
+    req.log.info({'config.getJournal': '', 'uuid': req._uuid});
+    config.getJournal({
+      uuid: req._uuid
+    },
+    req.params,
+    function(err, response) {
+      if (err) {
+        res.send(err.statusCode || 500, err.message);
+      } else {
+        res.send(response ? 200 : 404, response);
+      }
+    });
+  };
+
   return controller;
 };
