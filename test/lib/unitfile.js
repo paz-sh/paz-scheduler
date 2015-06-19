@@ -82,4 +82,12 @@ lab.experiment('unitfile', function() {
 
     done();
   });
+
+  lab.test('Check that the created unit file includes the correct volumes', function(done) {
+    var inis = unitfile(fixtures.oneInstance, 1);
+
+    expect(inis[0].unitfile.match(/-v \/foo \/bar/)).to.be.ok;
+
+    done();
+  });
 });
