@@ -22,7 +22,7 @@
       "numInstances": 1,
       "ports": [],
       "env": {},
-      "volume": {},
+      "volume": {"/foo" : "/bar"},
       "user": "core"
     }
   },
