@@ -6,6 +6,7 @@
         "publicFacing": false,
         "ports": [],
         "env": {},
+        "volume": {},
         "user": "core"
       }
   },
@@ -21,6 +22,7 @@
       "numInstances": 1,
       "ports": [],
       "env": {},
+      "volume": {},
       "user": "core"
     }
   },
@@ -32,6 +34,7 @@
       "numInstances": 2,
       "ports": [],
       "env": {},
+      "volume": {},
       "user": "core"
     }
   },
@@ -43,6 +46,7 @@
       "numInstances": 3,
       "ports": [],
       "env": {},
+      "volume": {},
       "user": "core"
     }
   }
