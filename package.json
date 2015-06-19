@@ -29,7 +29,7 @@
     "leveldown": "^0.10.2",
     "levelup": "^0.18.2",
     "minimist": "^0.2.0",
-    "node-etcd": "^2.1.1",
+    "node-etcd": "^4.0.2",
     "restify": "^2.7.0"
   },
   "devDependencies": {

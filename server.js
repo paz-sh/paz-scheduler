@@ -29,7 +29,7 @@ if (argv.help || argv.h) {
     '--ssh-port SSH port to use for connecting to fleetctl',
     '--gen-key If true, generate a keypair and post the public key to etcd; the private key will be used as if passed to --ssh-key (default: false)',
     '--etcd-pubkey-key The name of the key against which to store the generated public key (default: /paz/config/scheduler/_pubkey)',
-    '--etcd-endpoint URL of the etcd endpoint (default: 172.17.8.101:4001)',
+    '--etcd-endpoint URL of the etcd endpoint (default: 172.17.8.101:2379)',
     '--cors set whether to enable CORS or not (default: true)',
     '--nodeploy disable deployments, for testing (default: false)'
   ].join('\n'));
@@ -64,7 +64,7 @@ var opts = {
   'etcd-pubkey-key':
     argv['etcd-pubkey-key'] || process.env[APP_NAME + '_ETCD_PUBKEY_KEY'] || '/paz/config/scheduler/_pubkey',
   'etcd-endpoint':
-    argv['etcd-endpoint'] || process.env[APP_NAME + '_ETCD_ENDPOINT'] || '127.0.0.1:4001',
+    argv['etcd-endpoint'] || process.env[APP_NAME + '_ETCD_ENDPOINT'] || '127.0.0.1:2379',
   'cors': argh.argv.cors ||
     process.env[APP_NAME + '_CORS'] ||
     true,
