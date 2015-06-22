@@ -1,5 +1,7 @@
 FROM quay.io/yldio/paz-base
 
+RUN apk --update add openssh
+
 ADD ./package.json /usr/src/app/package.json
 WORKDIR /usr/src/app
 RUN npm install
