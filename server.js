@@ -29,7 +29,7 @@ if (argv.help || argv.h) {
     '--ssh-port SSH port to use for connecting to fleetctl',
     '--gen-key If true, generate a keypair and post the public key to etcd; the private key will be used as if passed to --ssh-key (default: false)',
     '--etcd-pubkey-key The name of the key against which to store the generated public key (default: /paz/config/scheduler/_pubkey)',
-    '--etcd-endpoint URL of the etcd endpoint (default: 172.17.8.101:2379)',
+    '--etcd-endpoint URL of the etcd endpoint (default: 172.17.9.101:2379)',
     '--cors set whether to enable CORS or not (default: true)',
     '--nodeploy disable deployments, for testing (default: false)'
   ].join('\n'));
