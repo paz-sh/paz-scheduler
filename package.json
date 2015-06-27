@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Takes apps from your paz service directory and runs them on a CoreOS cluster using fleet",
   "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paz-sh/paz-scheduler"
+   },
   "scripts": {
     "test": "docker-compose build && docker-compose up -d && sleep 3 && lab && docker-compose stop",
     "codestyle": "jscs -p google bin/ lib/ middleware/ resources/ server.js",
