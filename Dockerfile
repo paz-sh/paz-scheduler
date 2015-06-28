@@ -1,6 +1,6 @@
 FROM quay.io/yldio/paz-base
 
-RUN apk --update add openssh
+RUN apk --update add bash openssh
 
 ADD ./package.json /usr/src/app/package.json
 WORKDIR /usr/src/app
